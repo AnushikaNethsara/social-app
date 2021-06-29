@@ -1,0 +1,41 @@
+.card {
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+}
+
+.tg-btn {
+  background-color: transparent;
+  color: black;
+  font-size: 40px;
+  border: none;
+  padding: 0;
+}
+
+.tg-btn:hover {
+  background-color: transparent;
+  color: green;
+  font-size: 40px;
+  border: none;
+  padding: 0;
+}
+
+.job {
+  color: grey;
+}
+
+.about {
+  font-size: 16px;
+}
+
+.share {
+  color: green;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+}
+
+.share:hover {
+  color: rgb(0, 66, 0);
+  background-color: transparent;
+}

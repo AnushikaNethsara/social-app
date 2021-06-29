@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import UserContext from "../../context/userContext";
 import Axios from "axios";
 import ErrorNotice from "../misc/ErrorNotice";
-import Cal from "../../images/cal.png";
 import constants from "../../constants/constants";
+import "./style.css";
 
 export default function Login() {
   const [email, setEmail] = useState();
@@ -32,24 +32,20 @@ export default function Login() {
       err.response.data.msg && setError(err.response.data.msg);
     }
   };
+
   return (
-    <div>
-      <div
-        class="  p-3 mb-2  text-white "
-      //   style={{ backgroundImage: `url(${bg2})` }}
-      >
-        <div
-          class="container-lg  shadow p-3 mb-5  text-dark  "
-          style={{ marginTop: "4%", backgroundColor: "white" }}
-        >
-          <div class="row row-cols-2" style={{ marginTop: "1%" }}>
-            <div class="col  ">
-              <img src={Cal} class="img-thumbnail" alt="..."></img>
-            </div>
-            <div class="col ">
+    <div className="back">
+      <div>
+        <div class="container-lg text-dark">
+          <div class="row row-cols-2" style={{ height: "90vh" }}>
+            <div class="col"></div>
+            <div class="col">
               <div
-                class="container-sm   p-3 mb-5 bg-body rounded bg-light text-dark "
-                style={{ marginTop: "13%", height: "90%" }}
+                class="container-sm   p-3 mb-5 rounded text-dark "
+                style={{
+                  marginTop: "25%",
+                  backgroundColor: "rgba(255, 255, 255, 0.70)",
+                }}
               >
                 <div>
                   <div class="mx-auto">
@@ -95,11 +91,16 @@ export default function Login() {
 
                       <button
                         type="submit"
-                        className="btn btn-dark ml-150 px-5"
+                        className="btn btn-dark ml-150 px-5 w-100"
                         value="Log in"
                       >
                         Sign In
                       </button>
+                      <br></br>
+                      <p className="text-mute">
+                        Don't have an account yet?{" "}
+                        <Link to="/register">Signup Now!</Link>
+                      </p>
                     </form>
                   </div>
                 </div>
@@ -109,29 +110,5 @@ export default function Login() {
         </div>
       </div>
     </div>
-
-    // <div className="page">
-    //   <h2>Log in</h2>
-    //   {error && (
-    //     <ErrorNotice message={error} clearError={() => setError(undefined)} />
-    //   )}
-    //   <form className="form" onSubmit={submit}>
-    //     <label htmlFor="login-email">Email</label>
-    //     <input
-    //       id="login-email"
-    //       type="email"
-    //       onChange={(e) => setEmail(e.target.value)}
-    //     />
-
-    //     <label htmlFor="login-password">Password</label>
-    //     <input
-    //       id="login-password"
-    //       type="password"
-    //       onChange={(e) => setPassword(e.target.value)}
-    //     />
-
-    //     <input type="submit" value="Log in" />
-    //   </form>
-    // </div>
   );
 }
