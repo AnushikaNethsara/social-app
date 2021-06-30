@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory,Link } from "react-router-dom";
 import "../../css/style.css";
 import Axios from "axios";
 import UserContext from "../../context/userContext";
@@ -148,6 +148,10 @@ export default function Register() {
                       >
                         Sign Up
                       </button>
+                      <p className="text-mute mt-3 text-center">
+                        Already have an account yet?{" "}
+                        <Link to="/login">Login Now!</Link>
+                      </p>
                     </form>
                   </div>
                   <p></p>
@@ -158,41 +162,5 @@ export default function Register() {
         </div>
       </div>
     </div>
-
-    //   <div className="page">
-    //   <h2>Register</h2>
-    //   {error && (
-    //     <ErrorNotice message={error} clearError={() => setError(undefined)} />
-    //   )}
-    //   <form className="form" onSubmit={submit}>
-    //     <label htmlFor="register-email">Email</label>
-    //     <input
-    //       id="register-email"
-    //       type="email"
-    //       onChange={(e) => setEmail(e.target.value)}
-    //     />
-
-    //     <label htmlFor="register-password">Password</label>
-    //     <input
-    //       id="register-password"
-    //       type="password"
-    //       onChange={(e) => setPassword(e.target.value)}
-    //     />
-    //     <input
-    //       type="password"
-    //       placeholder="Verify password"
-    //       onChange={(e) => setPasswordCheck(e.target.value)}
-    //     />
-
-    //     <label htmlFor="register-display-name">Display name</label>
-    //     <input
-    //       id="register-display-name"
-    //       type="text"
-    //       onChange={(e) => setDisplayName(e.target.value)}
-    //     />
-
-    //     <input type="submit" value="Register" />
-    //   </form>
-    // </div>
   );
 }

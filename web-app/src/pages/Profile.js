@@ -15,58 +15,63 @@ class Profile extends Component {
   }
   render() {
     return (
-      <div>
-        <Container>
-          <div className="text-center">
-            <h3>Profile</h3>
-          </div>
-          <div>
-            <Row>
-              <Col sm={8}>
-                <Form>
-                  <Form.Group>
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Name" />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label>Youtube Channel Name</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Enter Name Youtube Channel Name"
-                    />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label>About Me (Bio)</Form.Label>
-                    <Form.Control as="textarea" rows={3} />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label>Content Category</Form.Label>
-                    <Form.Control type="text" placeholder="Select Upto 3" />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label>Socials</Form.Label>
-                    <Form.Control type="text" placeholder="YouTube" />
-                    <br></br>
-                    <Form.Control type="text" placeholder="Instagram" />
-                    <br></br>
-                    <Form.Control type="text" placeholder="TikTok" />
-                  </Form.Group>
-                </Form>
-              </Col>
-              <Col sm={4}>
-                <Image src={chef3} thumbnail></Image>
-                <Form>
-                  <Form.Group>
-                    <Form.File
-                      id="exampleFormControlFile1"
-                      label="Upload Profile Picture"
-                    />
-                  </Form.Group>
-                </Form>
-              </Col>
-            </Row>
-          </div>
-        </Container>
+      <div
+        class="container-lg  shadow p-3 mb-5  text-dark"
+        style={{ marginTop: "5%" }}
+      >
+        <div>
+          <Container>
+            <div className="text-center">
+              <h3>Profile</h3>
+            </div>
+            <div>
+              <Row>
+                <Col sm={8}>
+                  <Form>
+                    <Form.Group>
+                      <Form.Label>Name</Form.Label>
+                      <Form.Control type="text" placeholder="Enter Name" />
+                    </Form.Group>
+                    <Form.Group>
+                      <Form.Label>Youtube Channel Name</Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Enter Name Youtube Channel Name"
+                      />
+                    </Form.Group>
+                    <Form.Group>
+                      <Form.Label>About Me (Bio)</Form.Label>
+                      <Form.Control as="textarea" rows={3} />
+                    </Form.Group>
+                    <Form.Group>
+                      <Form.Label>Content Category</Form.Label>
+                      <Form.Control type="text" placeholder="Select Upto 3" />
+                    </Form.Group>
+                    <Form.Group>
+                      <Form.Label>Socials</Form.Label>
+                      <Form.Control type="text" placeholder="YouTube" />
+                      <br></br>
+                      <Form.Control type="text" placeholder="Instagram" />
+                      <br></br>
+                      <Form.Control type="text" placeholder="TikTok" />
+                    </Form.Group>
+                  </Form>
+                </Col>
+                <Col sm={4}>
+                  <Image src={chef3} thumbnail ></Image>
+                  <Form>
+                    <Form.Group>
+                      <Form.File
+                        id="exampleFormControlFile1"
+                        label="Upload Profile Picture"
+                      />
+                    </Form.Group>
+                  </Form>
+                </Col>
+              </Row>
+            </div>
+          </Container>
+        </div>
       </div>
     );
   }

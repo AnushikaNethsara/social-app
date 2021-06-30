@@ -34,74 +34,79 @@ export default function Login() {
   };
 
   return (
-    <div className="back">
+    <div className="back" >
       <div>
-        <div class="container-lg text-dark">
-          <div class="row row-cols-2" style={{ height: "90vh" }}>
-            <div class="col"></div>
-            <div class="col">
-              <div
-                class="container-sm   p-3 mb-5 rounded text-dark "
-                style={{
-                  marginTop: "25%",
-                  backgroundColor: "rgba(255, 255, 255, 0.70)",
-                }}
-              >
-                <div>
-                  <div class="mx-auto">
-                    <h2>Login</h2>
-                  </div>
-                  <p>Please Login to your Acount</p>
-                  {error && (
-                    <ErrorNotice
-                      message={error}
-                      clearError={() => setError(undefined)}
-                    />
-                  )}
+        <div
+          class="container-lg  shadow p-3 mb-5  text-dark"
+          style={{ marginTop: "5%" }}
+        >
+          <div class="container-lg text-dark">
+            <div class="row row-cols-2" style={{ height: "90vh" }}>
+              <div class="col"></div>
+              <div class="col">
+                <div
+                  class="container-sm   p-3 mb-5 rounded text-dark "
+                  style={{
+                    marginTop: "25%",
+                    backgroundColor: "rgba(255, 255, 255, 0.70)",
+                  }}
+                >
                   <div>
-                    <form onSubmit={submit}>
-                      <div className="mb-3">
-                        <label
-                          htmlFor="exampleInputEmail1"
-                          className="form-label"
-                        >
-                          Email
-                        </label>
-                        <input
-                          type="email"
-                          className="form-control"
-                          id="login-email"
-                          onChange={(e) => setEmail(e.target.value)}
-                        />
-                      </div>
-                      <div className="mb-3">
-                        <label
-                          htmlFor="exampleInputPassword1"
-                          className="form-label"
-                        >
-                          Password
-                        </label>
-                        <input
-                          type="password"
-                          className="form-control"
-                          id="login-password"
-                          onChange={(e) => setPassword(e.target.value)}
-                        />
-                      </div>
+                    <div class="mx-auto">
+                      <h2>Login</h2>
+                    </div>
+                    <p>Please Login to your Acount</p>
+                    {error && (
+                      <ErrorNotice
+                        message={error}
+                        clearError={() => setError(undefined)}
+                      />
+                    )}
+                    <div>
+                      <form onSubmit={submit}>
+                        <div className="mb-3">
+                          <label
+                            htmlFor="exampleInputEmail1"
+                            className="form-label"
+                          >
+                            Email
+                          </label>
+                          <input
+                            type="email"
+                            className="form-control"
+                            id="login-email"
+                            onChange={(e) => setEmail(e.target.value)}
+                          />
+                        </div>
+                        <div className="mb-3">
+                          <label
+                            htmlFor="exampleInputPassword1"
+                            className="form-label"
+                          >
+                            Password
+                          </label>
+                          <input
+                            type="password"
+                            className="form-control"
+                            id="login-password"
+                            onChange={(e) => setPassword(e.target.value)}
+                          />
+                        </div>
 
-                      <button
-                        type="submit"
-                        className="btn btn-dark ml-150 px-5 w-100"
-                        value="Log in"
-                      >
-                        Sign In
-                      </button>
-                      <br></br>
-                      <p className="text-mute">
-                        Don't have an account yet?{" "}
-                        <Link to="/register">Signup Now!</Link>
-                      </p>
-                    </form>
+                        <button
+                          type="submit"
+                          className="btn btn-dark ml-150 px-5 w-100"
+                          value="Log in"
+                        >
+                          Sign In
+                        </button>
+                        <br></br>
+                        <p className="text-mute mt-3  text-center">
+                          Don't have an account yet?{" "}
+                          <Link to="/register">Signup Now!</Link>
+                        </p>
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>
