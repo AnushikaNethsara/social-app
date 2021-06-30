@@ -6,17 +6,17 @@ const User = require("../models/userModel");
 
 router.post("/register", async (req, res) => {
   try {
-    let { email, password, passwordCheck, displayName } = req.body;
+    let { email, password, password_check, first_name, last_name } = req.body;
 
     // validate
 
-    if (!email || !password || !passwordCheck)
+    if (!email || !password || !password_check || !first_name || !last_name)
       return res.status(400).json({ msg: "Not all fields have been entered." });
     if (password.length < 5)
       return res
         .status(400)
         .json({ msg: "The password needs to be at least 5 characters long." });
-    if (password !== passwordCheck)
+    if (password !== password_check)
       return res
         .status(400)
         .json({ msg: "Enter the same password twice for verification." });
@@ -27,7 +27,6 @@ router.post("/register", async (req, res) => {
         .status(400)
         .json({ msg: "An account with this email already exists." });
 
-    if (!displayName) displayName = email;
 
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
@@ -35,7 +34,8 @@ router.post("/register", async (req, res) => {
     const newUser = new User({
       email,
       password: passwordHash,
-      displayName,
+      first_name,
+      last_name
     });
     const savedUser = await newUser.save();
     res.json(savedUser);
@@ -66,8 +66,27 @@ router.post("/login", async (req, res) => {
       token,
       user: {
         id: user._id,
-        displayName: user.displayName,
+        first_name: user.first_name,
       },
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+//**** update account details ****//
+router.put("/:id", async (req, res) => {
+  try {
+    await User.findById(req.params.id).then((user) => {
+      user.about = req.body.about;
+      user.category = req.body.category;
+      user.youtube = req.body.youtube;
+      user.insta = req.body.insta;
+      user.tiktok = req.body.tiktok;
+      user
+        .save()
+        .then(() => res.status(200).json({ msg: "Account Updated!" }))
+        .catch((err) => res.status(400).json({ error: err.message }));
     });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -103,10 +122,44 @@ router.post("/tokenIsValid", async (req, res) => {
 router.get("/", auth, async (req, res) => {
   const user = await User.findById(req.user);
   res.json({
-    displayName: user.displayName,
     id: user._id,
-    email:user.email
+    email: user.email
   });
+});
+
+//** get all lessons to display**//
+router.get("/all-users", async (req, res) => {
+  try {
+    await User.find()
+      .then((user) => {
+        res.json(user);
+      })
+      .catch((err) => res.status(400).json("Error : " + err));
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+
+});
+
+
+//**recommend**//
+router.get("/recommend/:id", async (req, res) => {
+  try {
+    var getUser = await User.findById(req.params.id)
+      .catch((err) => res.status(400).json("Error : " + err));
+
+    var categoryArray = getUser.category;
+    console.log("f: " + categoryArray)
+
+    await User.find({ 'category': { $in: categoryArray } })
+      .then((user) => {
+        res.json(user);
+      })
+      .catch((err) => res.status(400).json("Error : " + err));
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+
 });
 
 module.exports = router;
