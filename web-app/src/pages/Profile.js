@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Container, Button, Row, Col, Image, Form } from "react-bootstrap";
+import { Container, Row, Col, Image, Form } from "react-bootstrap";
 import chef3 from "../images/chef3.jpg";
+import "./style.css";
 
 class Profile extends Component {
   static propTypes = {
@@ -10,7 +11,7 @@ class Profile extends Component {
     history: PropTypes.object.isRequired,
   };
   componentDidMount() {
-    if (localStorage.getItem("auth-token") != "") {
+    if (localStorage.getItem("auth-token") !== "") {
     }
   }
   render() {
@@ -58,15 +59,29 @@ class Profile extends Component {
                   </Form>
                 </Col>
                 <Col sm={4}>
-                  <Image src={chef3} thumbnail ></Image>
-                  <Form>
-                    <Form.Group>
-                      <Form.File
-                        id="exampleFormControlFile1"
-                        label="Upload Profile Picture"
-                      />
-                    </Form.Group>
-                  </Form>
+                  <div style={{ paddingLeft: "30px", paddingRight: "30px" }}>
+                    <div className="imageContainer">
+                      <Image
+                        src={chef3}
+                        roundedCircle
+                        style={{ width: "100%" }}
+                      ></Image>
+                    </div>
+                    <Form style={{ marginTop: "20px" }}>
+                      <Form.Group>
+                        <div className="mb-3">
+                          <label htmlFor="formFile" className="form-label">
+                            Upload Profile Picture
+                          </label>
+                          <input
+                            className="form-control"
+                            type="file"
+                            id="formFile"
+                          />
+                        </div>
+                      </Form.Group>
+                    </Form>
+                  </div>
                 </Col>
               </Row>
             </div>

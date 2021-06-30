@@ -1,79 +1,81 @@
-import React, { Component } from "react";
-import { Container, Card, Button, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import ExploreCard from "../components/ExploreCard";
+import ReactCardCarousel from "react-card-carousel";
 import chef3 from "../images/chef3.jpg";
+import chef1 from "../images/chef1.jpg";
+import chef2 from "../images/chef2.jpg";
+import yo1 from "../images/yo1.jpg";
+import yo2 from "../images/yo2.jpg";
+
 import "./style.css";
 
-class Explore extends Component {
-  state = {};
-  render() {
-    return (
-      <div>
-        <Container>
-          <div className="text-center">
-            <h3>Explore</h3>
-          </div>
-          <div>
-            <Row className="row align-items-center text-center">
-              <Col sm={2}>
-                <Button className="tg-btn">
-                  <i className="fa fa-caret-square-o-left"></i>
-                </Button>
-              </Col>
-              <Col>
-                <Card style={{ width: "100%", marginTop: "2%" }}>
-                  <Row>
-                    <Col>
-                      <Card.Img variant="top" src={chef3} />
-                    </Col>
-                    <Col>
-                      <Card.Body style={{ textAlign: "left" }}>
-                        <Card.Title>John Doe</Card.Title>
-                        <Card.Title className="job">Chef</Card.Title>
-                        <Card.Title className="about">
-                          <Row>
-                            <Col>About Me</Col>
-                            <Col>
-                              <i className="fa fa-map-marker"></i>
-                              &nbsp; Chicago, USA
-                            </Col>
-                          </Row>
-                        </Card.Title>
-                        <Card.Text style={{ marginTop: "30px" }}>
-                          Some quick example text to build on the card title and
-                          make up the bulk of the card's content.
-                        </Card.Text>
-                        <Card.Text style={{ marginTop: "30px" }}>
-                          Some quick example text to build on the card title and
-                          make up the bulk of the card's content.
-                        </Card.Text>
-                        <Button variant="primary" className="w-100">
-                          Go somewhere
-                        </Button>
-                        <br></br>
-                        <br></br>
-                        <div className="text-center">
-                          <Button className="share">
-                            Share this profile &nbsp;{" "}
-                            <i className="fa fa-mail-forward"></i>
-                          </Button>
-                        </div>
-                      </Card.Body>
-                    </Col>
-                  </Row>
-                </Card>
-              </Col>
-              <Col sm={2}>
-                <Button className="tg-btn">
-                  <i className="fa fa-caret-square-o-right"></i>
-                </Button>
-              </Col>
-            </Row>
-          </div>
-        </Container>
-      </div>
-    );
-  }
+export default function Explore() {
+  return (
+    <div>
+      <Container>
+        <div className="text-center">
+          <h3>Explore</h3>
+        </div>
+        <div>
+          <Row className="row align-items-center text-center">
+            <Col>
+              <ReactCardCarousel>
+                <div>
+                  <ExploreCard
+                    name="John Doe"
+                    job="Chef"
+                    location="Chicago, USA"
+                    about1="Some quick example text to build on the card title and make up the bulk of the card's content."
+                    about2="Some quick example text to build on the card title and make up the bulk of the card's content."
+                    pic={chef3}
+                  ></ExploreCard>
+                </div>
+                <div>
+                  <ExploreCard
+                    name="Chan Dan"
+                    job="Chef"
+                    location="Chicago, USA"
+                    about1="Some quick example text to build on the card title and make up the bulk of the card's content."
+                    about2="Some quick example text to build on the card title and make up the bulk of the card's content."
+                    pic={chef1}
+                  ></ExploreCard>
+                </div>
+                <div>
+                  <ExploreCard
+                    name="Joe Call"
+                    job="Chef"
+                    location="Chicago, USA"
+                    about1="Some quick example text to build on the card title and make up the bulk of the card's content."
+                    about2="Some quick example text to build on the card title and make up the bulk of the card's content."
+                    pic={chef2}
+                  ></ExploreCard>
+                </div>
+                <div>
+                  <ExploreCard
+                    name="Zoy Han"
+                    job="Chef"
+                    location="Chicago, USA"
+                    about1="Some quick example text to build on the card title and make up the bulk of the card's content."
+                    about2="Some quick example text to build on the card title and make up the bulk of the card's content."
+                    pic={yo1}
+                  ></ExploreCard>
+                </div>
+                <div>
+                  <ExploreCard
+                    name="Dove Wills"
+                    job="Chef"
+                    location="Chicago, USA"
+                    about1="Some quick example text to build on the card title and make up the bulk of the card's content."
+                    about2="Some quick example text to build on the card title and make up the bulk of the card's content."
+                    pic={yo2}
+                  ></ExploreCard>
+                </div>
+              </ReactCardCarousel>
+            </Col>
+          </Row>
+        </div>
+      </Container>
+    </div>
+  );
 }
-
-export default Explore;
