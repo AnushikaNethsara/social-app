@@ -34,7 +34,7 @@ export default function Login() {
   };
 
   return (
-    <div className="back" >
+    <div className="back">
       <div>
         <div
           class="container-lg  shadow p-3 mb-5  text-dark"
@@ -42,7 +42,6 @@ export default function Login() {
         >
           <div class="container-lg text-dark">
             <div class="row row-cols-2" style={{ height: "90vh" }}>
-              <div class="col"></div>
               <div class="col">
                 <div
                   class="container-sm   p-3 mb-5 rounded text-dark "
@@ -110,6 +109,7 @@ export default function Login() {
                   </div>
                 </div>
               </div>
+              <div class="col"></div>
             </div>
           </div>
         </div>

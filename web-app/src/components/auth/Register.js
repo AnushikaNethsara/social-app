@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useHistory,Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import "../../css/style.css";
 import Axios from "axios";
 import UserContext from "../../context/userContext";
@@ -50,7 +50,6 @@ export default function Register() {
           style={{ marginTop: "5%" }}
         >
           <div class="row row-cols-2">
-            <div class="col"></div>
             <div class="col">
               <div
                 class="container-sm   p-3 mb-5 rounded text-dark"
@@ -158,6 +157,7 @@ export default function Register() {
                 </div>
               </div>
             </div>
+            <div class="col"></div>
           </div>
         </div>
       </div>
