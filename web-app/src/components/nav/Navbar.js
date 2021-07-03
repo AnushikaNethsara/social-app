@@ -63,7 +63,12 @@ export class navbar extends Component {
             open={this.state.sidebarOpen}
             onSetOpen={this.onSetSidebarOpen}
             styles={{
-              sidebar: { background: "#333", width: "350px", zIndex: "1080" },
+              sidebar: {
+                background: "#333",
+                width: "350px",
+                zIndex: "1080",
+                height: "100%",
+              },
             }}
           ></Sidebar>
         ) : null}
