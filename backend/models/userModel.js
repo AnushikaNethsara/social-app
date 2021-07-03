@@ -5,11 +5,13 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true, minlength: 5 },
   first_name: { type: String, required: true },
   last_name: { type: String, required: true },
+  language: { type: Array },
   about: { type: String },
   category: { type: Array },
   youtube: { type: String },
   insta: { type: String },
   tiktok: { type: String },
+  twitter: { type: String },
 });
 
 module.exports = User = mongoose.model("user", userSchema);

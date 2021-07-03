@@ -1,8 +1,51 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Container, Row, Col, Image, Form } from "react-bootstrap";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import TextField from "@material-ui/core/TextField";
 import "./style.css";
-import "./up.scss";
+//import "./up.scss";
+
+const AllCategories = [
+  "Gaming",
+  "Vlog",
+  "Podcast",
+  "Music",
+  "Parody/Comedy",
+  "Make-up &amp; Beauty",
+  "Reviews &amp; Unboxing",
+  "Health &amp; Fitness",
+  "Prank/Challenges",
+  "Tutorials",
+  "How-to &amp; DIY",
+  "Educational",
+  "Commentary",
+  "Sports",
+  "Compilations",
+  "News/Journalism",
+  "Lifestyle",
+  "Cooking",
+  "Infotainment",
+  "Travel",
+]
+
+const AllLanguages = [
+  "English",
+  "Hindi",
+  "Spanish",
+  "Arabic",
+  "Bengali",
+  "French",
+  "Russian",
+  "Portuguese",
+  "Urdu",
+  "Indonesian",
+  "German",
+  "Marathi",
+  "Telugu",
+  "Punjabi",
+  "Tamil",
+]
 
 class Profile extends Component {
   static propTypes = {
@@ -44,50 +87,35 @@ class Profile extends Component {
                     </Form.Group>
                     <Form.Group>
                       <Form.Label>Content Category (Select Upto 3)</Form.Label>
-                      <Form.Control as="select">
-                        <option>Gaming</option>
-                        <option>Vlog</option>
-                        <option>Podcast</option>
-                        <option>Music</option>
-                        <option>Parody/Comedy</option>
-                        <option>Make-up &amp; Beauty</option>
-                        <option>Reviews &amp; Unboxing</option>
-                        <option>Health &amp; Fitness</option>
-                        <option>Prank/Challenges</option>
-                        <option>Tutorials</option>
-                        <option>How-to &amp; DIY</option>
-                        <option>Educational</option>
-                        <option>Commentary</option>
-                        <option>Sports</option>
-                        <option>Compilations</option>
-                        <option>News/Journalism</option>
-                        <option>Lifestyle</option>
-                        <option>Cooking</option>
-                        <option>Infotainment</option>
-                        <option>Travel</option>
-                      </Form.Control>
+                      <Autocomplete
+                        multiple
+                        id="tags-outlined"
+                        options={AllCategories}
+                        getOptionLabel={(option) => option}                       
+                        //value={masterQualifications}
+                        //onChange={onChangeCategories}
+                        filterSelectedOptions
+                        renderInput={(params) => (
+                          <TextField {...params} variant="outlined" placeholder="Language (Pick Upto 2 Primary Languages You Talk)" />
+                        )}
+                      />
                     </Form.Group>
                     <Form.Group>
                       <Form.Label>
                         Language (Pick Upto 2 Primary Languages You Talk)
                       </Form.Label>
-                      <Form.Control as="select">
-                        <option>English</option>
-                        <option>Hindi</option>
-                        <option>Spanish</option>
-                        <option>Arabic</option>
-                        <option>Bengali</option>
-                        <option>French</option>
-                        <option>Russian</option>
-                        <option>Portuguese</option>
-                        <option>Urdu</option>
-                        <option>Indonesian</option>
-                        <option>German</option>
-                        <option>Marathi</option>
-                        <option>Telugu</option>
-                        <option>Punjabi</option>
-                        <option>Tamil</option>
-                      </Form.Control>
+                      <Autocomplete
+                        multiple
+                        id="tags-outlined"
+                        options={AllLanguages}
+                        getOptionLabel={(option) => option}
+                        //value={masterQualifications}
+                        //onChange={onChangeQualification}
+                        filterSelectedOptions
+                        renderInput={(params) => (
+                          <TextField {...params} variant="outlined" placeholder="Language (Pick Upto 2 Primary Languages You Talk)" />
+                        )}
+                      />
                     </Form.Group>
                     <Form.Group>
                       <Form.Label>About Me (Write A Short Bio)</Form.Label>

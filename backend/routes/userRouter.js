@@ -78,11 +78,13 @@ router.post("/login", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     await User.findById(req.params.id).then((user) => {
+      user.language = req.body.language;
       user.about = req.body.about;
       user.category = req.body.category;
       user.youtube = req.body.youtube;
       user.insta = req.body.insta;
       user.tiktok = req.body.tiktok;
+      user.twitter = req.body.twitter;
       user
         .save()
         .then(() => res.status(200).json({ msg: "Account Updated!" }))
@@ -149,11 +151,21 @@ router.get("/recommend/:id", async (req, res) => {
       .catch((err) => res.status(400).json("Error : " + err));
 
     var categoryArray = getUser.category;
-    console.log("f: " + categoryArray)
+    var languageArray = getUser.language;
+    var resultArray=[];
 
-    await User.find({ 'category': { $in: categoryArray } })
+    await User.find({ $or: [{ category: { $in: categoryArray } }, { language: { $in: languageArray } }] })
       .then((user) => {
-        res.json(user);
+        user.forEach((item,index)=>{
+          if (item._id != req.params.id){
+            resultArray.push(item)
+          }
+        })
+        if (resultArray.length !=0){
+          res.json(resultArray);
+        }else{
+          res.json("Sorry, we could not find a match for your selected category and language. Please change it in your profile and try again.");
+        }
       })
       .catch((err) => res.status(400).json("Error : " + err));
   } catch (err) {
@@ -163,3 +175,5 @@ router.get("/recommend/:id", async (req, res) => {
 });
 
 module.exports = router;
+
+//Sorry, we could not find a match for your selected category and language. Please change it in your profile and try again.
