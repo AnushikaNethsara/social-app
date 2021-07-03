@@ -50,6 +50,27 @@ export default function AuthOptions() {
         </>
       ) : (
         <>
+            <button
+              class="btn btn-outline-secondary mx-2"
+              onClick={explore}
+              style={{ borderRadius: "4rem" }}
+            >
+              Explore
+            </button>
+            <button
+              class="btn btn-outline-secondary mx-2"
+              onClick={profile}
+              style={{ borderRadius: "4rem" }}
+            >
+              Profile
+            </button>
+            <button
+              class="btn btn-outline-secondary mx-2"
+              onClick={logout}
+              style={{ borderRadius: "4rem" }}
+            >
+              Log out
+            </button>
           <button
             class="btn btn-outline-secondary mx-2"
             onClick={register}

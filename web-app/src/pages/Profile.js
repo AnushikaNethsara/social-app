@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Container, Row, Col, Image, Form } from "react-bootstrap";
-import chef3 from "../images/chef3.jpg";
 import "./style.css";
+import "./up.scss";
 
 class Profile extends Component {
   static propTypes = {
@@ -34,20 +34,66 @@ class Profile extends Component {
                       <Form.Control type="text" placeholder="Enter Name" />
                     </Form.Group>
                     <Form.Group>
-                      <Form.Label>Youtube Channel Name</Form.Label>
+                      <Form.Label>
+                        Youtube Channel Name / Social Handle Username
+                      </Form.Label>
                       <Form.Control
                         type="text"
-                        placeholder="Enter Name Youtube Channel Name"
+                        placeholder="Enter Name  Youtube Channel Name / Social Handle Username"
                       />
                     </Form.Group>
                     <Form.Group>
-                      <Form.Label>About Me (Bio)</Form.Label>
-                      <Form.Control as="textarea" rows={3} />
+                      <Form.Label>Content Category (Select Upto 3)</Form.Label>
+                      <Form.Control as="select">
+                        <option>Gaming</option>
+                        <option>Vlog</option>
+                        <option>Podcast</option>
+                        <option>Music</option>
+                        <option>Parody/Comedy</option>
+                        <option>Make-up &amp; Beauty</option>
+                        <option>Reviews &amp; Unboxing</option>
+                        <option>Health &amp; Fitness</option>
+                        <option>Prank/Challenges</option>
+                        <option>Tutorials</option>
+                        <option>How-to &amp; DIY</option>
+                        <option>Educational</option>
+                        <option>Commentary</option>
+                        <option>Sports</option>
+                        <option>Compilations</option>
+                        <option>News/Journalism</option>
+                        <option>Lifestyle</option>
+                        <option>Cooking</option>
+                        <option>Infotainment</option>
+                        <option>Travel</option>
+                      </Form.Control>
                     </Form.Group>
                     <Form.Group>
-                      <Form.Label>Content Category</Form.Label>
-                      <Form.Control type="text" placeholder="Select Upto 3" />
+                      <Form.Label>
+                        Language (Pick Upto 2 Primary Languages You Talk)
+                      </Form.Label>
+                      <Form.Control as="select">
+                        <option>English</option>
+                        <option>Hindi</option>
+                        <option>Spanish</option>
+                        <option>Arabic</option>
+                        <option>Bengali</option>
+                        <option>French</option>
+                        <option>Russian</option>
+                        <option>Portuguese</option>
+                        <option>Urdu</option>
+                        <option>Indonesian</option>
+                        <option>German</option>
+                        <option>Marathi</option>
+                        <option>Telugu</option>
+                        <option>Punjabi</option>
+                        <option>Tamil</option>
+                      </Form.Control>
                     </Form.Group>
+                    <Form.Group>
+                      <Form.Label>About Me (Write A Short Bio)</Form.Label>
+                      <Form.Control as="textarea" rows={3} />
+                    </Form.Group>
+
                     <Form.Group>
                       <Form.Label>Socials</Form.Label>
                       <Form.Control type="text" placeholder="YouTube" />
@@ -60,24 +106,36 @@ class Profile extends Component {
                 </Col>
                 <Col sm={4}>
                   <div style={{ paddingLeft: "30px", paddingRight: "30px" }}>
-                    <div className="imageContainer">
-                      <Image
-                        src={chef3}
-                        roundedCircle
-                        style={{ width: "80%",height:"80%" }}
-                      ></Image>
-                    </div>
                     <Form style={{ marginTop: "20px" }}>
                       <Form.Group>
-                        <div className="mb-3">
-                          {/* <label htmlFor="formFile" className="form-label">
-                            Upload Profile Picture
-                          </label> */}
-                          <input
-                            className="form-control"
-                            type="file"
-                            id="formFile"
-                          />
+                        <div className="wrapper">
+                          <div className="file-upload">
+                            <Row
+                              className="row align-items-center"
+                              style={{ height: "200px" }}
+                            >
+                              <Col>
+                                <div className="text-center">
+                                  <input type="file" />
+                                  <i className="fa fa-plus" />
+                                </div>
+                              </Col>
+                            </Row>
+                            <Row>
+                              <Col>
+                                <div className="text-center">
+                                  <p
+                                    style={{
+                                      fontSize: "15px",
+                                      fontWeight: "900",
+                                    }}
+                                  >
+                                    Click Here To Upload Image
+                                  </p>
+                                </div>
+                              </Col>
+                            </Row>
+                          </div>
                         </div>
                       </Form.Group>
                     </Form>

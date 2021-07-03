@@ -1,6 +1,6 @@
 .cardImageContainer {
-  width: 320px;
-  height: 480px;
+  width: 350px;
+  height: 350px;
   overflow: hidden;
   text-align: center;
 }
@@ -8,4 +8,22 @@
 .cardImageContainer img {
   max-width: 100%;
   max-height: 100%;
+}
+
+.chip {
+  background-color: rgb(96, 209, 115);
+  margin: 10px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 30px;
+  height: 60px;
+  width: 80px;
+}
+
+.icon {
+  font-size: 30px;
+  color: #3b5998;
+}
+.icon:hover {
+  color: rgb(96, 209, 115);
 }
