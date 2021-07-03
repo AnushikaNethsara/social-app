@@ -37,21 +37,21 @@ export default function Login() {
     <div className="back">
       <div>
         <div
-          class="container-lg  shadow p-3 mb-5  text-dark"
-          style={{ marginTop: "5%" }}
+          className="container-lg  shadow p-3 mb-5  text-dark"
+          style={{ marginTop: "5%", height: "700px" }}
         >
-          <div class="container-lg text-dark">
-            <div class="row row-cols-2" style={{ height: "90vh" }}>
-              <div class="col">
+          <div className="container-lg text-dark">
+            <div className="row row-cols-2" style={{ height: "90vh" }}>
+              <div className="col">
                 <div
-                  class="container-sm   p-3 mb-5 rounded text-dark "
+                  className="container-sm   p-3 mb-5 rounded text-dark "
                   style={{
                     marginTop: "25%",
                     backgroundColor: "rgba(255, 255, 255, 0.70)",
                   }}
                 >
                   <div>
-                    <div class="mx-auto">
+                    <div className="mx-auto">
                       <h2>Login</h2>
                     </div>
                     <p>Please Login to your Acount</p>
@@ -109,7 +109,8 @@ export default function Login() {
                   </div>
                 </div>
               </div>
-              <div class="col"></div>
+              <div className="col">
+              </div>
             </div>
           </div>
         </div>

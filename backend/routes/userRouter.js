@@ -144,6 +144,20 @@ router.get("/all-users", async (req, res) => {
 });
 
 
+//** get user data**//
+router.get("/:id", async (req, res) => {
+  try {
+    await User.findById(req.params.id)
+      .then((user) => {
+        res.json(user);
+      })
+      .catch((err) => res.status(400).json("Error : " + err));
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+
+});
+
 //**recommend**//
 router.get("/recommend/:id", async (req, res) => {
   try {

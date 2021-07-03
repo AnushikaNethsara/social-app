@@ -9,8 +9,12 @@ import yo1 from "../images/yo1.jpg";
 import yo2 from "../images/yo2.jpg";
 import "react-multi-carousel/lib/styles.css";
 import Carousel from "react-multi-carousel";
-
+import Chips from "../components/chips/Chips"
 import "./style.css";
+
+const lan = ["English", "Hindi", "Spanish",];
+const cat = ["Cooking", "Infotainment", "Travel",];
+
 
 export default function Explore() {
   return (

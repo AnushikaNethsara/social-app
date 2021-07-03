@@ -67,39 +67,6 @@ export default function AuthOptions() {
             <Col style={{ marginRight: "20px", marginTop: "20px" }}>
               <button
                 class="btn btn-outline-secondary mx-2 w-100 text-white"
-                onClick={explore}
-                style={{ borderRadius: "0" }}
-              >
-                Explore
-              </button>
-            </Col>
-          </Row>
-          <Row>
-            <Col style={{ marginRight: "20px", marginTop: "20px" }}>
-              <button
-                class="btn btn-outline-secondary mx-2 w-100 text-white"
-                onClick={profile}
-                style={{ borderRadius: "0" }}
-              >
-                Profile
-              </button>
-            </Col>
-          </Row>
-          <Row>
-            <Col style={{ marginRight: "20px", marginTop: "20px" }}>
-              <button
-                class="btn btn-outline-secondary mx-2 w-100 text-white"
-                onClick={logout}
-                style={{ borderRadius: "0" }}
-              >
-                Log out
-              </button>
-            </Col>
-          </Row>
-          <Row>
-            <Col style={{ marginRight: "20px", marginTop: "20px" }}>
-              <button
-                class="btn btn-outline-secondary mx-2 w-100 text-white"
                 onClick={register}
                 style={{ borderRadius: "0" }}
               >

@@ -1,11 +1,16 @@
 import React from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
 import "./style.css";
+import Chips from "../chips/Chips"
+
+const lan = ["English", "Hindi", "Spanish",];
+const cat = ["Cooking", "Infotainment", "Travel",];
+
 
 export default function ExploreCard(props) {
   return (
     <div>
-      <Card style={{ width: "80%", marginTop: "30px" }}>
+      <Card style={{ width: "80%", marginTop: "30px",padding:"5%"}}>
         <Row>
           <Col sm={5}>
             <Row>
@@ -18,7 +23,7 @@ export default function ExploreCard(props) {
                 <p>Content Category:</p>
                 <div style={{ display: "flex" }}>
                   {props.category.map((cat) => (
-                    <span className="chip">{cat} &nbsp;</span>
+                    <Chips title={cat}/>
                   ))}
                 </div>
               </Card.Text>
@@ -26,14 +31,14 @@ export default function ExploreCard(props) {
                 <p>Language:</p>
                 <div style={{ display: "flex" }}>
                   {props.language.map((lan) => (
-                    <span className="chip">{lan} &nbsp;</span>
+                    <Chips title={lan} />
                   ))}
                 </div>
               </Card.Text>
             </Row>
           </Col>
           <Col sm={7}>
-            <Card.Body style={{ textAlign: "left" }}>
+            <Card.Body style={{ textAlign: "left",marginBottom: "5%"  }}>
               <Card.Title>
                 <span className="job"> Name:</span>
                 <br></br> {props.name}
