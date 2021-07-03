@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import userContext from "../../context/userContext";
+import { Row, Col } from "react-bootstrap";
 
 export default function AuthOptions() {
   const { userData, setUserData } = useContext(userContext);
@@ -26,65 +27,97 @@ export default function AuthOptions() {
     <nav className="auth-options">
       {userData.user ? (
         <>
-          <button
-            class="btn btn-outline-secondary mx-2"
-            onClick={explore}
-            style={{ borderRadius: "4rem" }}
-          >
-            Explore
-          </button>
-          <button
-            class="btn btn-outline-secondary mx-2"
-            onClick={profile}
-            style={{ borderRadius: "4rem" }}
-          >
-            Profile
-          </button>
-          <button
-            class="btn btn-outline-secondary mx-2"
-            onClick={logout}
-            style={{ borderRadius: "4rem" }}
-          >
-            Log out
-          </button>
+          <Row>
+            <Col style={{ marginRight: "20px", marginTop: "20px" }}>
+              <button
+                class="btn btn-outline-secondary mx-2 w-100 text-white"
+                onClick={explore}
+                style={{ borderRadius: "0" }}
+              >
+                Explore
+              </button>
+            </Col>
+          </Row>
+          <Row>
+            <Col style={{ marginRight: "20px", marginTop: "20px" }}>
+              <button
+                class="btn btn-outline-secondary mx-2 w-100 text-white"
+                onClick={profile}
+                style={{ borderRadius: "0" }}
+              >
+                Profile
+              </button>
+            </Col>
+          </Row>
+          <Row>
+            <Col style={{ marginRight: "20px", marginTop: "20px" }}>
+              <button
+                class="btn btn-outline-secondary mx-2 w-100 text-white"
+                onClick={logout}
+                style={{ borderRadius: "0" }}
+              >
+                Log out
+              </button>
+            </Col>
+          </Row>
         </>
       ) : (
         <>
-            <button
-              class="btn btn-outline-secondary mx-2"
-              onClick={explore}
-              style={{ borderRadius: "4rem" }}
-            >
-              Explore
-            </button>
-            <button
-              class="btn btn-outline-secondary mx-2"
-              onClick={profile}
-              style={{ borderRadius: "4rem" }}
-            >
-              Profile
-            </button>
-            <button
-              class="btn btn-outline-secondary mx-2"
-              onClick={logout}
-              style={{ borderRadius: "4rem" }}
-            >
-              Log out
-            </button>
-          <button
-            class="btn btn-outline-secondary mx-2"
-            onClick={register}
-            style={{ borderRadius: "4rem" }}
-          >
-            Sign Up
-          </button>
-          <button
-            class="btn btn-outline-secondary mx-2"
-            onClick={login}
-            style={{ borderRadius: "4rem" }}
-          >
-            Login
-          </button>
+          <Row>
+            <Col style={{ marginRight: "20px", marginTop: "20px" }}>
+              <button
+                class="btn btn-outline-secondary mx-2 w-100 text-white"
+                onClick={explore}
+                style={{ borderRadius: "0" }}
+              >
+                Explore
+              </button>
+            </Col>
+          </Row>
+          <Row>
+            <Col style={{ marginRight: "20px", marginTop: "20px" }}>
+              <button
+                class="btn btn-outline-secondary mx-2 w-100 text-white"
+                onClick={profile}
+                style={{ borderRadius: "0" }}
+              >
+                Profile
+              </button>
+            </Col>
+          </Row>
+          <Row>
+            <Col style={{ marginRight: "20px", marginTop: "20px" }}>
+              <button
+                class="btn btn-outline-secondary mx-2 w-100 text-white"
+                onClick={logout}
+                style={{ borderRadius: "0" }}
+              >
+                Log out
+              </button>
+            </Col>
+          </Row>
+          <Row>
+            <Col style={{ marginRight: "20px", marginTop: "20px" }}>
+              <button
+                class="btn btn-outline-secondary mx-2 w-100 text-white"
+                onClick={register}
+                style={{ borderRadius: "0" }}
+              >
+                Sign Up
+              </button>
+            </Col>
+          </Row>
+          <Row>
+            <Col style={{ marginRight: "20px", marginTop: "20px" }}>
+              <button
+                class="btn btn-outline-secondary mx-2 w-100 text-white"
+                onClick={login}
+                style={{ borderRadius: "0" }}
+              >
+                Login
+              </button>
+            </Col>
+          </Row>
         </>
       )}
     </nav>
