@@ -24,8 +24,14 @@ export class navbar extends Component {
       <>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
           <Container fluid>
+            <button
+              style={{ color: "white", fontSize: "30px" }}
+              onClick={() => this.onSetSidebarOpen(true)}
+            >
+              <i class="fa fa-bars"></i>
+            </button>
             <Link
-              style={{ marginLeft: "60px" }}
+              style={{ marginLeft: "20px" }}
               class="navbar-brand"
               to="/explore"
             >
@@ -40,34 +46,27 @@ export class navbar extends Component {
             </Navbar.Collapse>
           </Container>
         </Navbar>
-        <Sidebar
-          sidebar={
-            <>
-              <Button
-                style={{ marginLeft: "300px", marginTop: "10px" }}
-                variant="danger"
-                onClick={() => this.onSetSidebarOpen(false)}
-              >
-                <i class="fa fa-close"></i>
-              </Button>
-              <AuthOptions />
-            </>
-          }
-          open={this.state.sidebarOpen}
-          onSetOpen={this.onSetSidebarOpen}
-          styles={{
-            sidebar: { background: "#333", width: "350px", zIndex: "1080" },
-          }}
-        >
-          <div style={{ marginLeft: "20px" }}>
-            <button
-              style={{ color: "white", paddingTop: "4px", fontSize: "30px" }}
-              onClick={() => this.onSetSidebarOpen(true)}
-            >
-              <i class="fa fa-bars"></i>
-            </button>
-          </div>
-        </Sidebar>
+        {this.state.sidebarOpen ? (
+          <Sidebar
+            sidebar={
+              <>
+                <Button
+                  style={{ marginLeft: "300px", marginTop: "10px" }}
+                  variant="danger"
+                  onClick={() => this.onSetSidebarOpen(false)}
+                >
+                  <i class="fa fa-close"></i>
+                </Button>
+                <AuthOptions />
+              </>
+            }
+            open={this.state.sidebarOpen}
+            onSetOpen={this.onSetSidebarOpen}
+            styles={{
+              sidebar: { background: "#333", width: "350px", zIndex: "1080" },
+            }}
+          ></Sidebar>
+        ) : null}
       </>
     );
   }
