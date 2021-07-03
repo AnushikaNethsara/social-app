@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Container, Row, Col, Image, Form } from "react-bootstrap";
+import { Container, Row, Col, Form } from "react-bootstrap";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
 import "./style.css";
@@ -27,7 +27,7 @@ const AllCategories = [
   "Cooking",
   "Infotainment",
   "Travel",
-]
+];
 
 const AllLanguages = [
   "English",
@@ -45,7 +45,7 @@ const AllLanguages = [
   "Telugu",
   "Punjabi",
   "Tamil",
-]
+];
 
 class Profile extends Component {
   static propTypes = {
@@ -74,7 +74,11 @@ class Profile extends Component {
                   <Form>
                     <Form.Group>
                       <Form.Label>Name</Form.Label>
-                      <Form.Control type="text" placeholder="Enter Name" />
+                      <Form.Control
+                        type="text"
+                        placeholder="Enter Name"
+                        style={{ marginBottom: "30px", height: "65px" }}
+                      />
                     </Form.Group>
                     <Form.Group>
                       <Form.Label>
@@ -83,6 +87,7 @@ class Profile extends Component {
                       <Form.Control
                         type="text"
                         placeholder="Enter Name  Youtube Channel Name / Social Handle Username"
+                        style={{ marginBottom: "30px", height: "65px" }}
                       />
                     </Form.Group>
                     <Form.Group>
@@ -91,12 +96,17 @@ class Profile extends Component {
                         multiple
                         id="tags-outlined"
                         options={AllCategories}
-                        getOptionLabel={(option) => option}                       
+                        getOptionLabel={(option) => option}
                         //value={masterQualifications}
                         //onChange={onChangeCategories}
                         filterSelectedOptions
                         renderInput={(params) => (
-                          <TextField {...params} variant="outlined" placeholder="Language (Pick Upto 2 Primary Languages You Talk)" />
+                          <TextField
+                            {...params}
+                            variant="outlined"
+                            placeholder="Language (Pick Upto 2 Primary Languages You Talk)"
+                            style={{ marginBottom: "30px", height: "65px" }}
+                          />
                         )}
                       />
                     </Form.Group>
@@ -113,22 +123,43 @@ class Profile extends Component {
                         //onChange={onChangeQualification}
                         filterSelectedOptions
                         renderInput={(params) => (
-                          <TextField {...params} variant="outlined" placeholder="Language (Pick Upto 2 Primary Languages You Talk)" />
+                          <TextField
+                            {...params}
+                            variant="outlined"
+                            placeholder="Language (Pick Upto 2 Primary Languages You Talk)"
+                            style={{ marginBottom: "30px", height: "65px" }}
+                          />
                         )}
                       />
                     </Form.Group>
                     <Form.Group>
                       <Form.Label>About Me (Write A Short Bio)</Form.Label>
-                      <Form.Control as="textarea" rows={3} />
+                      <Form.Control
+                        as="textarea"
+                        rows={4}
+                        style={{ marginBottom: "30px" }}
+                      />
                     </Form.Group>
 
                     <Form.Group>
                       <Form.Label>Socials</Form.Label>
-                      <Form.Control type="text" placeholder="YouTube" />
+                      <Form.Control
+                        type="text"
+                        placeholder="YouTube"
+                        style={{ height: "65px" }}
+                      />
                       <br></br>
-                      <Form.Control type="text" placeholder="Instagram" />
+                      <Form.Control
+                        type="text"
+                        placeholder="Instagram"
+                        style={{ height: "65px" }}
+                      />
                       <br></br>
-                      <Form.Control type="text" placeholder="TikTok" />
+                      <Form.Control
+                        type="text"
+                        placeholder="TikTok"
+                        style={{ height: "65px" }}
+                      />
                     </Form.Group>
                   </Form>
                 </Col>
