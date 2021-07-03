@@ -41,7 +41,11 @@ export default function Login() {
           style={{ marginTop: "5%" }}
         >
           <div class="container-lg text-dark">
+<<<<<<< HEAD
             <div class="row row-cols-2" style={{ height: "700px" }}>
+=======
+            <div class="row row-cols-2" style={{ height: "90vh" }}>
+>>>>>>> 74fb7a332c2e9f5bf547a5873ce2756fd20cda96
               <div class="col">
                 <div
                   class="container-sm   p-3 mb-5 rounded text-dark "
