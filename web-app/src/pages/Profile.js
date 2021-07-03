@@ -64,15 +64,15 @@ class Profile extends Component {
                       <Image
                         src={chef3}
                         roundedCircle
-                        style={{ width: "100%" }}
+                        style={{ width: "80%",height:"80%" }}
                       ></Image>
                     </div>
                     <Form style={{ marginTop: "20px" }}>
                       <Form.Group>
                         <div className="mb-3">
-                          <label htmlFor="formFile" className="form-label">
+                          {/* <label htmlFor="formFile" className="form-label">
                             Upload Profile Picture
-                          </label>
+                          </label> */}
                           <input
                             className="form-control"
                             type="file"
