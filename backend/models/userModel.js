@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true, minlength: 5 },
-  first_name: { type: String, required: true },
-  last_name: { type: String, required: true },
+  userName: { type: String },
+  socialName: { type: String},
   language: { type: Array },
   about: { type: String },
   category: { type: Array },
@@ -12,6 +12,11 @@ const userSchema = new mongoose.Schema({
   insta: { type: String },
   tiktok: { type: String },
   twitter: { type: String },
+  photo: { type: String },
+  resetLink: {
+    data: String,
+    default: ''
+  }
 });
 
 module.exports = User = mongoose.model("user", userSchema);

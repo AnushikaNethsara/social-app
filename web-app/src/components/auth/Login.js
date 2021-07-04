@@ -27,6 +27,7 @@ export default function Login() {
         user: loginRes.data.user,
       });
       localStorage.setItem("auth-token", loginRes.data.token);
+      localStorage.setItem("auth-id", loginRes.data.user.id);
       history.push("/profile");
     } catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
@@ -97,12 +98,15 @@ export default function Login() {
                           className="btn btn-dark ml-150 px-5 w-100"
                           value="Log in"
                         >
-                          Sign In
+                         Login
                         </button>
                         <br></br>
                         <p className="text-mute mt-3  text-center">
                           Don't have an account yet?{" "}
                           <Link to="/register">Signup Now!</Link>
+                        </p>
+                        <p className="text-mute mt-3  text-center">
+                          <Link to="/email-validation">Forget Password</Link>
                         </p>
                       </form>
                     </div>

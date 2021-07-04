@@ -19,7 +19,7 @@ export default function AuthOptions() {
       user: undefined,
     });
     localStorage.setItem("auth-token", "");
-    localStorage.setItem("User_id", "");
+    localStorage.setItem("auth-id", "");
     history.push("/login");
   };
 

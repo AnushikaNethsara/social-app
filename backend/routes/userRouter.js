@@ -3,14 +3,58 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
 const User = require("../models/userModel");
+const multer = require("multer");
+const _ = require("lodash");
+let nodemailer = require("nodemailer");
+
+
+const myEmail = process.env.EMAIL;
+const EmailPassword = process.env.PASSWORD;
+
+//*** Email ***//
+let transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: myEmail,
+    pass: EmailPassword,
+  },
+  tls: {
+    rejectUnauthorized: false,
+  },
+});
+
+const DIR = './public/';
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, DIR);
+  },
+  filename: (req, file, cb) => {
+    const fileName = file.originalname.toLowerCase().split(' ').join('-');
+    cb(null, "file_" + "-" + Date.now() + '-' + fileName)
+  }
+});
+
+var upload = multer({
+  storage: storage,
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+      cb(null, true);
+    } else {
+      cb(null, false);
+      return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
+    }
+  }
+});
+
 
 router.post("/register", async (req, res) => {
-  try {
-    let { email, password, password_check, first_name, last_name } = req.body;
 
+  try {
+    let { email, password, password_check, userName } = req.body;
     // validate
 
-    if (!email || !password || !password_check || !first_name || !last_name)
+    if (!email || !password || !password_check || !userName)
       return res.status(400).json({ msg: "Not all fields have been entered." });
     if (password.length < 5)
       return res
@@ -34,8 +78,16 @@ router.post("/register", async (req, res) => {
     const newUser = new User({
       email,
       password: passwordHash,
-      first_name,
-      last_name
+      userName,
+      socialName: "",
+      about: "",
+      category: [],
+      language: [],
+      youtube: "",
+      insta: "",
+      tiktok: "",
+      twitter: "",
+      profilePic: "",
     });
     const savedUser = await newUser.save();
     res.json(savedUser);
@@ -66,7 +118,7 @@ router.post("/login", async (req, res) => {
       token,
       user: {
         id: user._id,
-        first_name: user.first_name,
+        userName: user.userName,
       },
     });
   } catch (err) {
@@ -74,22 +126,50 @@ router.post("/login", async (req, res) => {
   }
 });
 
+
 //**** update account details ****//
-router.put("/:id", async (req, res) => {
+router.put("/:id", upload.single('photo'), async (req, res) => {
   try {
-    await User.findById(req.params.id).then((user) => {
-      user.language = req.body.language;
-      user.about = req.body.about;
-      user.category = req.body.category;
-      user.youtube = req.body.youtube;
-      user.insta = req.body.insta;
-      user.tiktok = req.body.tiktok;
-      user.twitter = req.body.twitter;
-      user
-        .save()
-        .then(() => res.status(200).json({ msg: "Account Updated!" }))
-        .catch((err) => res.status(400).json({ error: err.message }));
-    });
+    const url = req.protocol + '://' + req.get('host')
+    var photoChanged = req.body.changed;
+
+    if (req.body.changed === "yes") {
+      await User.findById(req.params.id).then((user) => {
+        user.userName = req.body.userName;
+        user.socialName = req.body.socialName;
+        user.language = req.body.language;
+        user.about = req.body.about;
+        user.category = req.body.category;
+        user.youtube = req.body.youtube;
+        user.insta = req.body.insta;
+        user.tiktok = req.body.tiktok;
+        user.twitter = req.body.twitter;
+        user.photo = url + '/public/' + req.file.filename;
+        user
+          .save()
+          .then(() => res.status(200).json({ msg: "Account Updated!" }))
+          .catch((err) => res.status(400).json({ error: err.message }));
+
+      });
+    }
+    if (req.body.changed === "no") {
+      await User.findById(req.params.id).then((user) => {
+        user.userName = req.body.userName;
+        user.socialName = req.body.socialName;
+        user.language = req.body.language;
+        user.about = req.body.about;
+        user.category = req.body.category;
+        user.youtube = req.body.youtube;
+        user.insta = req.body.insta;
+        user.tiktok = req.body.tiktok;
+        user.twitter = req.body.twitter;
+        user
+          .save()
+          .then(() => res.status(200).json({ msg: "Account Updated!" }))
+          .catch((err) => res.status(400).json({ error: err.message }));
+
+      });
+    }
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -129,34 +209,39 @@ router.get("/", auth, async (req, res) => {
   });
 });
 
-//** get all lessons to display**//
-router.get("/all-users", async (req, res) => {
-  try {
-    await User.find()
-      .then((user) => {
-        res.json(user);
-      })
-      .catch((err) => res.status(400).json("Error : " + err));
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
 
-});
 
 
 //** get user data**//
 router.get("/:id", async (req, res) => {
   try {
-    await User.findById(req.params.id)
-      .then((user) => {
-        res.json(user);
+    await User.find({ _id: req.params.id })
+      .then((detail) => {
+        res.status(200).json(detail);
       })
       .catch((err) => res.status(400).json("Error : " + err));
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
-
 });
+
+//** remove photo**//
+router.delete("/remove-photo/:id", async (req, res) => {
+  try {
+    await User.findById(req.params.id).then((user) => {
+      user.photo = undefined;
+      user
+        .save()
+        .then(() => res.status(200).json({ msg: "Account Updated!" }))
+        .catch((err) => res.status(400).json({ error: err.message }));
+
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 
 //**recommend**//
 router.get("/recommend/:id", async (req, res) => {
@@ -166,20 +251,16 @@ router.get("/recommend/:id", async (req, res) => {
 
     var categoryArray = getUser.category;
     var languageArray = getUser.language;
-    var resultArray=[];
+    var resultArray = [];
 
     await User.find({ $or: [{ category: { $in: categoryArray } }, { language: { $in: languageArray } }] })
       .then((user) => {
-        user.forEach((item,index)=>{
-          if (item._id != req.params.id){
+        user.forEach((item, index) => {
+          if (item._id != req.params.id) {
             resultArray.push(item)
           }
         })
-        if (resultArray.length !=0){
-          res.json(resultArray);
-        }else{
-          res.json("Sorry, we could not find a match for your selected category and language. Please change it in your profile and try again.");
-        }
+        res.json(resultArray);
       })
       .catch((err) => res.status(400).json("Error : " + err));
   } catch (err) {
@@ -188,6 +269,104 @@ router.get("/recommend/:id", async (req, res) => {
 
 });
 
+
+//forget password
+router.post("/forgot-password", async (req, res) => {
+  const { email } = req.body;
+  console.log(email)
+  User.findOne({ email }, (err, user) => {
+    if (err || !user) {
+      return res
+        .status(400)
+        .json({ msg: "User with this email does not exists." });
+    }
+
+    const token = jwt.sign(
+      { _id: user._id },
+      process.env.RESET_PASSWORD_KEY,
+      { expiresIn: "20m" }
+    );
+    const mailOptions = {
+      from: myEmail,
+      to: email,
+      subject: "Password Reset Link",
+      html: `
+      <h2> Please click on the given link to reset your passsword</h2>
+      <p>${process.env.CLIENT_URL}/new-password/${token}</p>`,
+    };
+
+    return user.updateOne({ resetLink: token }, function (err, success) {
+      if (err) {
+        return res.status(400).json({ error: "reset password link error" });
+      } else {
+        transporter.sendMail(mailOptions, function (error, info) {
+          if (error) {
+            res.status(400).send({ msg: "Mail Sent error:" + error.message });
+          } else {
+            res.status(200).json({ msg: "Please check you email" });
+          }
+        });
+      }
+    });
+  });
+});
+
+
+//reset password
+
+router.post("/reset-password", async (req, res) => {
+  const { resetLink, newPassword } = req.body;
+
+  if (newPassword.length < 5)
+    return res
+      .status(400)
+      .json({ msg: "The password needs to be at least 5 characters long." });
+
+  const salt = await bcrypt.genSalt();
+  const passwordHash = await bcrypt.hash(newPassword, salt);
+
+  if (resetLink) {
+    jwt.verify(resetLink, process.env.RESET_PASSWORD_KEY, function (error, decodeData) {
+      if (error) {
+        return res.status(401).json({
+          error: "Incorrect token or it is expired"
+        })
+      }
+
+      User.findOne({ resetLink }, (err, user) => {
+        if (err || !user) {
+          return res
+            .status(400)
+            .json({ error: "User with this email does not exists." });
+        }
+
+        const obj = {
+          password: passwordHash,
+          resetLink: "",
+        };
+
+        //update the database
+        user = _.extend(user, obj);
+        user.save((err, result) => {
+          if (err) {
+            return res.status(400).json({ error: "reset password link error" });
+          } else {
+            return res.status(200).json({ error: "Your password has been changed" });
+          }
+
+        })
+
+      })
+    })
+
+  } else {
+    return res
+      .status(401)
+      .json({ msg: "Authentication error!" });
+
+  }
+
+});
+
 module.exports = router;
 
-//Sorry, we could not find a match for your selected category and language. Please change it in your profile and try again.

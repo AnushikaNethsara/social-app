@@ -28,3 +28,5 @@ mongoose.connect(
 );
 
 app.use("/users", require("./routes/userRouter"));
+app.use("/photo", require("./routes/photo"));
+app.use("/public",express.static('public'));

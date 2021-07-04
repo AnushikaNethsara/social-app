@@ -13,7 +13,7 @@ export default function Register() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [passwordCheck, setPasswordCheck] = useState();
-  const [displayName, setDisplayName] = useState();
+  const [userName, setUserName] = useState();
   const [error, setError] = useState();
 
   const { setUserData } = useContext(UserContext);
@@ -22,7 +22,21 @@ export default function Register() {
   const submit = async (e) => {
     e.preventDefault();
     try {
-      const newUser = { email, password, passwordCheck, displayName };
+      const newUser = { 
+        email, 
+        password, 
+        password_check:passwordCheck, 
+        userName,
+        socialName: "",
+        about: "",
+        category:[],
+        language:[],
+        youtube: "",
+        insta: "",
+        tiktok: "",
+        twitter: "",
+        profilePic: "",
+      };
       await Axios.post(constants.backend_url + "/users/register", newUser);
       const loginRes = await Axios.post(
         constants.backend_url + "/users/login",
@@ -36,6 +50,7 @@ export default function Register() {
         user: loginRes.data.user,
       });
       localStorage.setItem("auth-token", loginRes.data.token);
+      localStorage.setItem("auth-id", loginRes.data.user.id);
       history.push("/profile");
     } catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
@@ -74,24 +89,17 @@ export default function Register() {
                       <div className="mb-2">
                         <Row>
                           <Col>
-                            <div className="mb-2">
-                              <label className="form-label">First Name</label>
+                            <div className="mb-4">
+                              <label
+                                htmlFor="exampleInputPassword1"
+                                className="form-label"
+                              >
+                                Name
+                              </label>
                               <input
                                 type="text"
-                                id="register-display-name"
                                 className="form-control"
-                                onChange={(e) => setDisplayName(e.target.value)}
-                              />
-                            </div>
-                          </Col>
-                          <Col>
-                            <div className="mb-2">
-                              <label className="form-label">Last Name</label>
-                              <input
-                                type="text"
-                                id="register-display-name"
-                                className="form-control"
-                                onChange={(e) => setDisplayName(e.target.value)}
+                                onChange={(e) => setUserName(e.target.value)}
                               />
                             </div>
                           </Col>

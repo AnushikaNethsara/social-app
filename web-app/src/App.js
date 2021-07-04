@@ -11,6 +11,8 @@ import Navbar from "./components/nav/Navbar";
 import constants from "./constants/constants";
 import Explore from "./pages/Explore";
 import Profile from "./pages/Profile";
+import EmailValidation from "./pages/EmailValidation";
+import EnterNewPassword from "./pages/EnterNewPassword"
 
 export default function App() {
   const [userData, setUserData] = useState({
@@ -53,10 +55,13 @@ export default function App() {
           <Navbar />
           <div className="container">
             <Switch>
+              <Route path="/email-validation" component={EmailValidation} />
+              <Route path="/new-password/:token" component={EnterNewPassword} />
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/explore" component={Explore} />
               <Route path="/register" component={Register} />
               <Route path="/" component={Login} />
+            
             </Switch>
           </div>
         </UserContext.Provider>
