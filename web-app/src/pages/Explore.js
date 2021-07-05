@@ -1,21 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ExploreCard from "../components/ExploreCard";
-import ReactCardCarousel from "react-card-carousel";
-import chef3 from "../images/chef3.jpg";
-import chef1 from "../images/chef1.jpg";
-import chef2 from "../images/chef2.jpg";
-import yo1 from "../images/yo1.jpg";
-import yo2 from "../images/yo2.jpg";
 import "react-multi-carousel/lib/styles.css";
 import Carousel from "react-multi-carousel";
-import Chips from "../components/chips/Chips"
+import Chips from "../components/chips/Chips";
 import "./style.css";
 import constants from "../constants/constants";
 import Axios from "axios";
 
-const lan = ["English", "Hindi", "Spanish",];
-const cat = ["Cooking", "Infotainment", "Travel",];
+const lan = ["English", "Hindi", "Spanish"];
+const cat = ["Cooking", "Infotainment", "Travel"];
 
 class Explore extends Component {
   constructor() {
@@ -34,19 +28,19 @@ class Explore extends Component {
     }
   }
 
-
   async getRecomendedList() {
     var id = localStorage.getItem("auth-id");
     try {
-      Axios.get(constants.backend_url + "/users/recommend/" + id)
-        .then(res => {
-          console.log("her: " + res.data)
+      Axios.get(constants.backend_url + "/users/recommend/" + id).then(
+        (res) => {
+          console.log("her: " + res.data);
           this.setState({
-            values: res.data
-          })
-        })
+            values: res.data,
+          });
+        }
+      );
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   }
   render() {
@@ -106,38 +100,35 @@ class Explore extends Component {
                   slidesToSlide={1}
                   swipeable
                 >
-
-                  {
-                    this.state.values.length != 0 ? (
-                      this.state.values &&
-                      this.state.values.map((item) => {
-                        return (
-                          <div class="container-lg  shadow p-3 mb-5  text-dark">
-
-                            <ExploreCard
-                              name={item.userName}
-                              channel={item.socialName}
-                              about1={item.about}
-                              pic={item.photo}
-                              category={item.category}
-                              language={item.language}
-                              youtube={item.youtube}
-                              twitter={item.twitter}
-                              instagram={item.insta}
-                              tiktok={item.tiktok}
-                            ></ExploreCard>
-                          </div>
-                        )
-                      })
-
-                    ) : (
-                      <div style={{marginTop:"20%"}}>
-                        <h3>
-                          Sorry, we could not find a match for your selected category and language. Please change it in your profile and try again.
-                        </h3>
-                      </div>
-                    )
-                  }
+                  {this.state.values.length != 0 ? (
+                    this.state.values &&
+                    this.state.values.map((item) => {
+                      return (
+                        <div class="container-lg  shadow p-3 mb-5  text-dark">
+                          <ExploreCard
+                            name={item.userName}
+                            channel={item.socialName}
+                            about1={item.about}
+                            pic={item.photo}
+                            category={item.category}
+                            language={item.language}
+                            youtube={item.youtube}
+                            twitter={item.twitter}
+                            instagram={item.insta}
+                            tiktok={item.tiktok}
+                          ></ExploreCard>
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <div style={{ marginTop: "20%" }}>
+                      <h3>
+                        Sorry, we could not find a match for your selected
+                        category and language. Please change it in your profile
+                        and try again.
+                      </h3>
+                    </div>
+                  )}
                 </Carousel>
               </Col>
             </Row>
