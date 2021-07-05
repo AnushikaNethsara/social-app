@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
 import "./style.css";
-import Chips from "../chips/Chips"
-import g from "../../images/user.png"
+import Chips from "../chips/Chips";
+import g from "../../images/user.png";
 
-const lan = ["English", "Hindi", "Spanish",];
-const cat = ["Cooking", "Infotainment", "Travel",];
-
+const lan = ["English", "Hindi", "Spanish"];
+const cat = ["Cooking", "Infotainment", "Travel"];
 
 export default function ExploreCard(props) {
   const [picture, setPicture] = useState("");
   useEffect(() => {
-    console.log("pic: " + props.pic)
+    console.log("pic: " + props.pic);
     if (props.pic === undefined) {
-      setPicture(g)
+      setPicture(g);
     } else {
-      setPicture(props.pic)
+      setPicture(props.pic);
     }
-  }, [])
+  }, []);
   return (
     <div>
       <Card style={{ width: "80%", marginTop: "30px", padding: "5%" }}>
@@ -25,23 +24,32 @@ export default function ExploreCard(props) {
           <Col sm={5}>
             <Row>
               <div className="cardImageContainer">
-                <Card.Img variant="top" src={picture} width="300px" height="300px" />
+                <Card.Img
+                  variant="top"
+                  src={picture}
+                  width="300px"
+                  height="300px"
+                />
               </div>
             </Row>
             <Row>
               <Card.Text style={{ marginTop: "30px" }}>
                 <p>Content Category:</p>
-                <div style={{ display: "flex" }}>
+                <div className="d-flex flex-row">
                   {props.category.map((cat) => (
-                    <Chips title={cat} />
+                    <div>
+                      <Chips title={cat} />
+                    </div>
                   ))}
                 </div>
               </Card.Text>
               <Card.Text style={{ marginTop: "30px" }}>
                 <p>Language:</p>
-                <div style={{ display: "flex" }}>
+                <div className="d-flex flex-row">
                   {props.language.map((lan) => (
-                    <Chips title={lan} />
+                    <div>
+                      <Chips title={lan} />
+                    </div>
                   ))}
                 </div>
               </Card.Text>
@@ -71,22 +79,22 @@ export default function ExploreCard(props) {
                 <Row>
                   <Card.Title>Socials:</Card.Title>
                   <Col>
-                    <a className="icon" href={props.youtube} target="_blank" >
+                    <a className="icon" href={props.youtube} target="_blank">
                       <i className="fa fa-youtube-play"></i>
                     </a>
                   </Col>
                   <Col>
-                    <a className="icon" href={props.instagram} target="_blank" >
+                    <a className="icon" href={props.instagram} target="_blank">
                       <i className="fa fa-instagram"></i>
                     </a>
                   </Col>
                   <Col>
-                    <a className="icon" href={props.twitter} target="_blank" >
+                    <a className="icon" href={props.twitter} target="_blank">
                       <i className="fa fa-twitter"></i>
                     </a>
                   </Col>
                   <Col>
-                    <a className="icon" href={props.tiktok} target="_blank" >
+                    <a className="icon" href={props.tiktok} target="_blank">
                       <i className="fa fa-tumblr"></i>
                     </a>
                   </Col>
